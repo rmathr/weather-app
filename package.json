@@ -1,0 +1,29 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmathr/weather-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmathr/weather-app/issues"
+  },
+  "homepage": "https://github.com/rmathr/weather-app#readme",
+  "devDependencies": {
+    "gh-pages": "^5.0.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
