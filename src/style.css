@@ -1,3 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --background-black: #050301;
+    --header-background: #202124;
+    --fonts-white: #EFEFEF
+}
+
+
 body{
-    background-color: aquamarine;
+    background-color: var(--background-black);
+    color: var(--fonts-white);
+    font-family: 'Inter', sans-serif;
+}
+
+.main-header{
+    height: 150px;
+    background-color: var(--header-background);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}    
+
+input[type="text"] {
+    appearance: none;
+    /* width: 70%; */
+    border: 1px solid #333;
+    margin: 0;
+    font-family: inherit;
+    font-size: 90%;
+    grid-area: input;
+}
+
+input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+  }
+  
+  input:focus:invalid {
+    outline: none;
+  }
+
+.city-error{
+    width: 100%;
+    padding: 0;
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+    grid-area: error;
+}
+.city-error.active{
+    padding: 0.3em;
+}
+
+.input-format{
+    display: grid;
+    grid-template-areas: 
+    "input input input button"
+    "error error error error";
+}
+
+.submit-city{
+    grid-area: button;
+}
+
+
+.main-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-weather{
+    width: 50%;
+    height: fit-content;
+    margin: 24px 0;
+    text-align: center;
+    border: 1px solid var(--fonts-white);
+
+    padding: 12px;
+    font-size: 1.5rem;
+    display: grid;
+    grid-template-areas:
+    ".... condition condition image image ...."
+    ".... condition condition image image ...."
+    "location location location location location location"
+    "temp temp temp feels feels feels"
+    "temp temp temp wind wind wind"
+    "temp temp temp humidity humidity humidity";
+    row-gap: 10px;
+}
+
+.current-condition{
+    grid-area: condition;
+    align-self: center;
+}
+
+.current-image{
+    grid-area: image;
+    width: 45px;
+    height: auto;
+}
+
+.location-name{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    grid-area: location;
+}
+
+.current-temperature{
+    grid-area: temp;
+    font-size: 4rem;
+    justify-self: end;
+    margin-right: 12px;
+    padding-right: 12px;
+    border-right: 3px solid var(--fonts-white);
+}
+
+.current-feels-like{
+    grid-area: feels;
+}
+
+.current-wind{
+    grid-area: wind;
+}
+
+.current-humidity{
+    grid-area: humidity;
+}
+
+.current-feels-like, .current-wind, .current-humidity{
+    justify-self: start;
+    text-transform: uppercase;
+}
+
+.forecast-weather{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.forecasts{
+    width: 18%;
+    height: fit-content;
+    text-align: center;
+    border: 1px solid var(--fonts-white);
+    padding: 12px 4px;
+}
+
+.forecasts:nth-child(2){
+    margin-left: 12px;
+}
+
+.forecasts:nth-child(3){
+    margin: 0 12px;
+}
+
+.forecasts:nth-child(4){
+    margin-right: 12px;
+}
+
+.max-temperature{
+    font-size: 1.5rem;
+    margin: 12px 0;
+}
+
+.forecast-condition{
+    margin: 12px 0;
+}
+
+.chance-rain{
+    font-size: 0.7rem;
+}
+
+.forecast-image{
+    margin-top: 12px;
+    width: 35px;
+    height: auto;
 }
