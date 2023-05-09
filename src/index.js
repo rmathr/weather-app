@@ -5,9 +5,11 @@ import { format } from 'date-fns'
 function handleSearch (){
     const cityInputForm = document.querySelector('form')
     const cityInput = document.getElementById('cityInput')
+    const toggleCelsiusFahrenheit = interactDOM().hookDOMelement('toggleCelsiusFahrenheit')
     let city
+    let unitStatus
     cityInputForm.addEventListener('submit', async (e) =>{
-        
+        toggleCelsiusFahrenheit.textContent == '°C' ? unitStatus = true : unitStatus = false
         if(!cityInput.validity.valid){
             formValidation().showCityError()
             e.preventDefault()
@@ -17,7 +19,7 @@ function handleSearch (){
 
             try{
                 const data = await searchWeather(city)
-                handleContentShow(data)
+                changeCelsiusFahrenheit(data, unitStatus)
            } catch(err){
                 const error = await err
                 formValidation().showCityError('err')
@@ -56,11 +58,6 @@ function handleContentShow (obj, boolean){
 
 
 async function searchWeather(searchCity){
-            
-    // const currentWeather = await fetch(`https://api.weatherapi.com/v1/current.json?key=005512f4aa2f45aab64154049230405&q=${searchCity}`)
-    // const currentData = await currentWeather.json()
-    // console.log(currentData)
-    
         try{
             const forecastWeather = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=005512f4aa2f45aab64154049230405&days=6&q=${searchCity}`)
             const forecastData = await forecastWeather.json()
@@ -70,10 +67,7 @@ async function searchWeather(searchCity){
             return forecastData
         } catch(err){
             return err
-        }
-
-
-        
+        } 
     }
 
 async function stardardLocation(city) {
@@ -85,23 +79,25 @@ async function stardardLocation(city) {
 stardardLocation('toronto')
 
 
-function changeCelsiusFahrenheit(obj){
+function changeCelsiusFahrenheit(obj, status){
     const toggleCelsiusFahrenheit = interactDOM().hookDOMelement('toggleCelsiusFahrenheit')
-    let unitStatus = true
-    handleContentShow(obj, unitStatus)
+    let unitStatus
+    if(arguments.length == 1){
+        unitStatus = true
+        toggleCelsiusFahrenheit.textContent = '°C'
+        handleContentShow(obj, unitStatus)
+    } else {
+        unitStatus = status
+        handleContentShow(obj, unitStatus)
+    }
+    
     toggleCelsiusFahrenheit.addEventListener('mousedown', e => {
-        unitStatus ? false : true
+        e.preventDefault()
+        unitStatus == true ? unitStatus = false : unitStatus = true
+        toggleCelsiusFahrenheit.textContent == '°C' ? toggleCelsiusFahrenheit.textContent = "°F" : toggleCelsiusFahrenheit.textContent = "°C"
         handleContentShow(obj, unitStatus)
     })
 }
-
-
-
-
-
-
-
-
 
 function formValidation(){
     

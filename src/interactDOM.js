@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import season from './season.png'
 
 const interactDOM = function(){
 
@@ -36,7 +37,7 @@ const interactDOM = function(){
         element.style.display = 'flex'
     }
 
-    const appendElementAndDefineContentCurrent = function (container, obj) {
+    const appendElementAndDefineContentCurrent = function (container, obj, boolean) {
         while (container.hasChildNodes()){
         container.removeChild(container.firstChild)
         }
@@ -57,13 +58,13 @@ const interactDOM = function(){
         currentCondition.textContent = `${obj.current.condition.text}`
         currentImage.src = `${obj.current.condition.icon.replaceAll('//', 'https://')}`
         locationElem.textContent = `${obj.location.name}, ${obj.location.country}`
-        currentTemp.textContent = `${obj.current.temp_c}°C`
-        currentFeelsLike.textContent = `feels like: ${obj.current.feelslike_c}°C`
+        currentTemp.textContent = `${boolean ? `${obj.current.temp_c}°C` : `${obj.current.temp_f}°F`}`
+        currentFeelsLike.textContent = `${boolean? `feels like: ${obj.current.feelslike_c}°C` : `feels like: ${obj.current.feelslike_f}°F` }`
         currentWind.textContent = `wind: ${obj.current.wind_kph} kph`
         currentHumidity.textContent = `humidity: ${obj.current.humidity}%`
     }
 
-    const appendElementAndDefineContentForecast = function (container, obj, day) {
+    const appendElementAndDefineContentForecast = function (container, obj, day, boolean) {
         while (container.hasChildNodes()){
         container.removeChild(container.firstChild)
         }
@@ -81,8 +82,8 @@ const interactDOM = function(){
         container.appendChild(forecastImage)
         dayDate.textContent = `${format(new Date(obj.forecast.forecastday[day].date.replaceAll('-', '/')), "EEEE',' dd MMM")}`
         conditionText.textContent = `${obj.forecast.forecastday[day].day.condition.text}`
-        maxTemp.textContent = `${obj.forecast.forecastday[day].day.maxtemp_c}°C`
-        minTemp.textContent = `${obj.forecast.forecastday[day].day.mintemp_c}°C`
+        maxTemp.textContent = `${boolean ? `${obj.forecast.forecastday[day].day.maxtemp_c}°C` : `${obj.forecast.forecastday[day].day.maxtemp_f}°F`}`
+        minTemp.textContent = `${boolean ? `${obj.forecast.forecastday[day].day.mintemp_c}°C` : `${obj.forecast.forecastday[day].day.mintemp_f}°F`}`
         chanceOfRain.textContent = `chance of rain: ${obj.forecast.forecastday[day].day.daily_chance_of_rain}%`
         forecastImage.src = `${obj.forecast.forecastday[day].day.condition.icon.replaceAll('//', 'https://')}`
     }
@@ -104,5 +105,21 @@ const interactDOM = function(){
         formReset,
     }
 }
+
+const handleImageBrand = (function(){
+    const imageBrand = interactDOM().createElementWithClassAndId('img', 'image-brand', 'imageBrand')
+    imageBrand.src = season
+    const brandTitle = interactDOM().hookDOMelement('brandTitle')
+    brandTitle.insertAdjacentElement("afterbegin", imageBrand)
+    
+    
+    const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/png';
+    link.rel = 'shortcut icon';
+    link.href = season;
+    document.getElementsByTagName('head')[0].appendChild(link);
+})()
+
+
 
 export default interactDOM
