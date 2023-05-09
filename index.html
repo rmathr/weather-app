@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="main.js" defer></script>
+    <title>authWeather</title>
+</head>
+<body>
+    <section id="mainContainer" class="main-container">
+    <header class="main-header">
+        <section class="brand-title" id="brandTitle">
+            <p class="title-text">authWeather</p>
+        </section>
+        <form action="" id="searchCity" class="search-city" autocomplete="off" novalidate>
+            <section class="input-format">
+                <input type="text" id="cityInput" class="city-input" placeholder="City" required>
+                <span class="city-error" aria-live="polite"></span>
+                <button id="submitCity" class="submit-city"> </button>
+            </section>
+        </form>
+        <button class="toggle-celsius-fahrenheit" id="toggleCelsiusFahrenheit"></button>
+
+    </header>
+    
+    <section class="main-content" id="mainContent">
+        <section class="current-weather" id="currentWeather"></section>
+        
+        <section class="forecast-weather" id="forecastWeather">
+            <section class="forecasts" id="forecastOne"></section>
+            <section class="forecasts" id="forecastTwo"></section>
+            <section class="forecasts" id="forecastThree"></section>
+            <section class="forecasts" id="forecastFour"></section>
+            <section class="forecasts" id="forecastFive"></section>
+        </section>
+    </section>
+    <footer class="footer">
+        <p>rmath ©</p>
+        <a href="https://github.com/rmathr" class="fa-brands fa-github"></a>
+    </footer>
+    </section>
+</body>
+</html>
