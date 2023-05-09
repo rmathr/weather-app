@@ -19,24 +19,6 @@ const interactDOM = function(){
         return interactDOM().hookDOMelement(idName).value
     }
 
-    const toggleElementDisplay = function(element, displayValue){
-        if(arguments.length > 1){
-            element.style.display == displayValue ? element.style.display = 'none' : element.style.display = displayValue
-        } else if (arguments.length == 1){
-            element.style.display == 'flex' ? element.style.display = 'none' : element.style.display = 'flex'
-        }
-    }
-
-   
-
-    const hide = function(element){
-        element.style.display = 'none'
-    }
-
-    const show = function(element){
-        element.style.display = 'flex'
-    }
-
     const appendElementAndDefineContentCurrent = function (container, obj, boolean) {
         while (container.hasChildNodes()){
         container.removeChild(container.firstChild)
@@ -99,9 +81,6 @@ const interactDOM = function(){
         getInputValue, 
         appendElementAndDefineContentCurrent,
         appendElementAndDefineContentForecast,
-        toggleElementDisplay,
-        hide,
-        show,
         formReset,
     }
 }

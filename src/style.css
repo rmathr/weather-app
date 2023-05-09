@@ -94,11 +94,13 @@ input[type="text"] {
 .toggle-celsius-fahrenheit{
     border: none;
     border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
     background-color:  rgba(32, 33, 36, 0.3);
     padding: 6px;
     color: var(--fonts-white);
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 /* input:invalid {
